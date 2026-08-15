@@ -6,7 +6,7 @@ class Plant:
 
     def show(self) -> None:
         cap_name = self.name.capitalize()
-        print(f"{cap_name}: {int(self.height)}cm, {self.age} days old")
+        print(f"{cap_name}: {self.height}cm, {self.age} days old")
 
 
 if __name__ == "__main__":
@@ -17,4 +17,3 @@ if __name__ == "__main__":
     plant1.show()
     plant2.show()
     plant3.show()
-

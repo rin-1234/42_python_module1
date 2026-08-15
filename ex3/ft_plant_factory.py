@@ -8,26 +8,27 @@ class Plant:
         cap_name = self.name.capitalize()
         print(f"{cap_name}: {self.height}cm, {self.age_day} days old")
 
-    def grow(self):
-       self.height = round((self.height + 0.8), 1) 
+    def grow(self) -> None:
+        self.height = round((self.height + 0.8), 1)
 
-    def age(self):
+    def age(self) -> None:
         self.age_day += 1
+
 
 if __name__ == "__main__":
     rose = Plant("rose", 25.0, 30)
-    oak = Plant("oak", 25.0, 30)
-    cactus = Plant("cactus", 25.0, 30)
-    sunflower = Plant("sunflower", 25.0, 30)
-    fern = Plant("fern", 25.0, 30)
+    oak = Plant("oak", 200.0, 365)
+    cactus = Plant("cactus", 5.0, 90)
+    sunflower = Plant("sunflower", 80.0, 45)
+    fern = Plant("fern", 15.0, 120)
     print("=== Plant Factory Output ===")
-    print(f"Created: ", end="")
+    print("Created: ", end="")
     rose.show()
-    print(f"Created: ", end="")
+    print("Created: ", end="")
     oak.show()
-    print(f"Created: ", end="")
+    print("Created: ", end="")
     cactus.show()
-    print(f"Created: ", end="")
+    print("Created: ", end="")
     sunflower.show()
-    print(f"Created: ", end="")
+    print("Created: ", end="")
     fern.show()

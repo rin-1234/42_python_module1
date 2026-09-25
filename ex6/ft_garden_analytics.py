@@ -1,9 +1,9 @@
 class Plant:
     class Stats:
         def __init__(self) -> None:
-            self.grow_count = 0
-            self.age_count = 0
-            self.show_count = 0
+            self._grow_count = 0
+            self._age_count = 0
+            self._show_count = 0
 
         def show(self) -> None:
             print(
@@ -13,22 +13,22 @@ class Plant:
             )
 
         def get_grow_count(self) -> int:
-            return self.grow_count
+            return self._grow_count
 
         def get_age_count(self) -> int:
-            return self.age_count
+            return self._age_count
 
         def get_show_count(self) -> int:
-            return self.show_count
+            return self._show_count
 
         def set_grow_count(self) -> None:
-            self.grow_count += 1
+            self._grow_count += 1
 
         def set_age_count(self) -> None:
-            self.age_count += 1
+            self._age_count += 1
 
         def set_show_count(self) -> None:
-            self.show_count += 1
+            self._show_count += 1
 
     def __init__(
         self,
@@ -36,13 +36,13 @@ class Plant:
         height: float,
         age: int,
     ) -> None:
-        self.name = name.capitalize()
+        self._name = name.capitalize()
         if height < 0.0:
-            print(f"{self.name}: Error, height can't be negative")
+            print(f"{self._name}: Error, height can't be negative")
             print("Height set to default value")
             height = 0.0
         if age < 0:
-            print(f"{self.name}: Error, age can't be negative")
+            print(f"{self._name}: Error, age can't be negative")
             print("Age set to default value")
             age = 0
         self._height = height
@@ -50,12 +50,11 @@ class Plant:
         self._stats = Plant.Stats()
 
     def show(self) -> None:
-        cap_name = self.name.capitalize()
-        print(f"{cap_name}: {self._height}cm, {self._age} days old")
+        print(f"{self._name}: {self._height}cm, {self._age} days old")
         self._stats.set_show_count()
 
     def show_stats(self) -> None:
-        print(f"[statistics for {self.name}]")
+        print(f"[statistics for {self._name}]")
         self._stats.show()
 
     def grow(self) -> None:
@@ -68,15 +67,15 @@ class Plant:
 
     def set_height(self, height: float) -> None:
         if height < 0.0:
-            print(f"{self.name}: Error, height can't be negative")
+            print(f"{self._name}: Error, height can't be negative")
             print("Height update rejected")
             return
         self._height = height
-        print(f"Height updated: {round((self._height), 0)}cm")
+        print(f"Height updated: {self._height}cm")
 
     def set_age(self, age: int) -> None:
         if age < 0:
-            print(f"{self.name}: Error, age can't be negative")
+            print(f"{self._name}: Error, age can't be negative")
             print("Age update rejected")
             return
         self._age = age
@@ -113,9 +112,9 @@ class Flower(Plant):
         super().show()
         print(f"Color: {self.color}")
         if self.is_bloom is False:
-            print(f"{self.name} has not bloomed yet")
+            print(f"{self._name} has not bloomed yet")
         else:
-            print(f"{self.name} is blooming beautifully!")
+            print(f"{self._name} is blooming beautifully!")
 
     def bloom(self) -> None:
         self.is_bloom = True
@@ -144,16 +143,16 @@ class Seed(Flower):
 class Tree(Plant):
     class TreeStats:
         def __init__(self) -> None:
-            self.shade_count = 0
+            self._shade_count = 0
 
         def show(self) -> None:
-            print(f"{self.shade_count} shade")
+            print(f"{self._shade_count} shade")
 
         def get_shade_count(self) -> int:
-            return self.shade_count
+            return self._shade_count
 
         def set_shade_count(self) -> None:
-            self.shade_count += 1
+            self._shade_count += 1
 
     def __init__(
         self,
@@ -168,7 +167,7 @@ class Tree(Plant):
 
     def produce_shade(self) -> None:
         print(
-            f"Tree Oak now produces a shade of {self._height}cm long "
+            f"Tree {self._name} now produces a shade of {self._height}cm long "
             f"and {self.trunk_diameter}cm wide."
         )
         self._tree_stats.set_shade_count()
@@ -225,6 +224,7 @@ if __name__ == "__main__":
     rose.bloom()
     rose.show()
     show_statistic(rose)
+    print()
 
     print("=== Tree")
     oak = Tree("oak", 200.0, 365, 5.0)

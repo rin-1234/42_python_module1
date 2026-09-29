@@ -141,11 +141,13 @@ class Seed(Flower):
 
 
 class Tree(Plant):
-    class TreeStats:
+    class TreeStats(Plant.Stats):
         def __init__(self) -> None:
+            super().__init__()
             self._shade_count = 0
 
         def show(self) -> None:
+            super().show()
             print(f"{self._shade_count} shade")
 
         def get_shade_count(self) -> int:
